@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { Icon } from '@/components/limitless'
+import { Icon } from '@/components/admin'
 
 interface LoginForm {
   username: string
