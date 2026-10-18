@@ -1,0 +1,28 @@
+/*
+ * Design token của giao diện Limitless (theme default).
+ * Giá trị là xấp xỉ từ template; muốn khớp 100% thì đối chiếu với assets/css/colors.css.
+ */
+@theme {
+  --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+
+  --color-lt-navbar: #263238;
+  --color-lt-sidebar: #263238;
+  --color-lt-page: #f5f5f5;
+  --color-lt-border: #ddd;
+  --color-lt-text: #333;
+  --color-lt-muted: #999;
+
+  --color-lt-primary: #2196f3;
+  --color-lt-success: #4caf50;
+  --color-lt-success-400: #66bb6a;
+  --color-lt-success-600: #43a047;
+  --color-lt-danger: #f44336;
+  --color-lt-warning-400: #ffa726;
+  --color-lt-grey-400: #bdbdbd;
+  --color-lt-blue-400: #42a5f5;
+  --color-lt-teal-400: #26a69a;
+  --color-lt-teal-800: #00695c;
+  --color-lt-pink-400: #ec407a;
+  --color-lt-indigo-300: #7986cb;
+  --color-lt-indigo-400: #5c6bc0;
+}
