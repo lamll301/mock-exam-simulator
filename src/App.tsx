@@ -1,25 +1,37 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, Outlet } from 'react-router-dom'
 import Layout from '@/components/Layout'
 import HomePage from '@/pages/HomePage'
 import AboutPage from '@/pages/AboutPage'
-import LoginPage from '@/pages/admin/LoginPage'
-import Error403Page from './pages/admin/Error403Page'
-import Error404Page from './pages/admin/Error404Page'
-import Error405Page from './pages/admin/Error405Page'
-import Error500Page from './pages/admin/Error500Page'
-import Error503Page from './pages/admin/Error503Page'
-import ErrorOfflinePage from './pages/admin/ErrorOfflinePage'
+import LoginPage from '@/pages/lmtlss_23/LoginPage'
+import Error403Page from './pages/lmtlss_23/Error403Page'
+import Error404Page from './pages/lmtlss_23/Error404Page'
+import Error405Page from './pages/lmtlss_23/Error405Page'
+import Error500Page from './pages/lmtlss_23/Error500Page'
+import Error503Page from './pages/lmtlss_23/Error503Page'
+import ErrorOfflinePage from './pages/lmtlss_23/ErrorOfflinePage'
+import LimitlessScope from '@/components/lmtlss_23/LimitlessScope'
+import IndexPage from './pages/lmtlss_23/IndexPage'
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/limitless/login" element={<LoginPage />} />
-      <Route path="/limitless/error/403" element={<Error403Page />} />
-      <Route path="/limitless/error/404" element={<Error404Page />} />
-      <Route path="/limitless/error/405" element={<Error405Page />} />
-      <Route path="/limitless/error/500" element={<Error500Page />} />
-      <Route path="/limitless/error/503" element={<Error503Page />} />
-      <Route path="/limitless/error/offline" element={<ErrorOfflinePage />} />
+      <Route
+        path="/lmtlss_23"
+        element={
+          <LimitlessScope>
+            <Outlet />
+          </LimitlessScope>
+        }
+      >
+        <Route index element={<IndexPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="error/403" element={<Error403Page />} />
+        <Route path="error/404" element={<Error404Page />} />
+        <Route path="error/405" element={<Error405Page />} />
+        <Route path="error/500" element={<Error500Page />} />
+        <Route path="error/503" element={<Error503Page />} />
+        <Route path="error/offline" element={<ErrorOfflinePage />} />
+      </Route>
 
       <Route
         path="*"
