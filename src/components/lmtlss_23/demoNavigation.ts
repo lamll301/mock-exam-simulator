@@ -70,7 +70,7 @@ export const demoNavigation: NavNode[] = [
   {
     type: 'group', label: "Form components", icon: "pencil3",
     children: [
-      {type: 'link', label: 'Basic inputs', to: '/form_inputs'},
+      {type: 'link', label: 'Basic inputs', to: '/lmtlss_23/form-inputs'},
       {type: 'link', label: 'Checkboxes & radios', to: '/form_checkboxes_radios'},
       {type: 'link', label: 'Select2 selects', to: '/form_select2'},
       {type: 'link', label: 'Bootstrap multiselect', to: '/form_multiselect'},

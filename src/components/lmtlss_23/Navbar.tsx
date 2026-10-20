@@ -203,7 +203,7 @@ function UserMenu({ name }: { name: string }) {
       trigger={
         <>
           <Avatar name={name} size={34} className="mr-2" />
-          <span>{name}</span>
+          <span style={{ paddingLeft: 0 }}>{name}</span>
         </>
       }
     >

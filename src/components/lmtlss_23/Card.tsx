@@ -5,6 +5,8 @@ export type CardTool = 'collapse' | 'reload' | 'remove'
 
 interface CardProps {
   title?: string
+  /** Thẻ tiêu đề: template dùng h6 ở hầu hết card, h5 ở các trang form */
+  titleAs?: 'h5' | 'h6'
   /** Phần bên phải header (.header-elements) */
   actions?: ReactNode
   /** Các nút nhỏ góc phải header, thay cho data-action của template (collapse / reload / remove) */
@@ -65,6 +67,7 @@ function CardTools({
 
 export default function Card({
   title,
+  titleAs: Title = 'h6',
   actions,
   tools,
   children,
@@ -91,7 +94,7 @@ export default function Card({
     <div className={`card ${className}`.trim()}>
       {title && (
         <div className={`card-header ${headerClassName}`}>
-          <h6 className="card-title">{title}</h6>
+          <Title className="card-title">{title}</Title>
           {hasHeaderElements && (
             <div className="header-elements">
               {actions}

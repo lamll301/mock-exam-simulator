@@ -11,6 +11,8 @@ import Error503Page from './pages/lmtlss_23/Error503Page'
 import ErrorOfflinePage from './pages/lmtlss_23/ErrorOfflinePage'
 import LimitlessScope from '@/components/lmtlss_23/LimitlessScope'
 import IndexPage from './pages/lmtlss_23/IndexPage'
+import FormInputs from './pages/lmtlss_23/FormInputs'
+import ComponentsModals from './pages/lmtlss_23/ComponentsModals'
 
 export default function App() {
   return (
@@ -24,6 +26,8 @@ export default function App() {
         }
       >
         <Route index element={<IndexPage />} />
+        <Route path="form-inputs" element={<FormInputs />} />
+        <Route path="components-modals" element={<ComponentsModals />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="error/403" element={<Error403Page />} />
         <Route path="error/404" element={<Error404Page />} />
