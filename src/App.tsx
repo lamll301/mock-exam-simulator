@@ -13,6 +13,9 @@ import LimitlessScope from '@/components/lmtlss_23/LimitlessScope'
 import IndexPage from './pages/lmtlss_23/IndexPage'
 import FormInputs from './pages/lmtlss_23/FormInputs'
 import ComponentsModals from './pages/lmtlss_23/ComponentsModals'
+import TableBasic from './pages/lmtlss_23/TableBasic'
+import DatatableBasic from './pages/lmtlss_23/DatatableBasic'
+
 
 export default function App() {
   return (
@@ -27,6 +30,8 @@ export default function App() {
       >
         <Route index element={<IndexPage />} />
         <Route path="form-inputs" element={<FormInputs />} />
+        <Route path="table-basic" element={<TableBasic />} />
+        <Route path="datatable-basic" element={<DatatableBasic />} />
         <Route path="components-modals" element={<ComponentsModals />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="error/403" element={<Error403Page />} />
@@ -35,6 +40,7 @@ export default function App() {
         <Route path="error/500" element={<Error500Page />} />
         <Route path="error/503" element={<Error503Page />} />
         <Route path="error/offline" element={<ErrorOfflinePage />} />
+        <Route path="*" element={<Error404Page />} />
       </Route>
 
       <Route
@@ -48,6 +54,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
+              <Route path="*" element={<Error404Page />} />
             </Routes>
           </Layout>
         }

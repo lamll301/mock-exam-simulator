@@ -49,6 +49,7 @@ export default function LimitlessLayout({
         brand={brand}
         logo={logo}
         userName={user.name.split(' ')[0]}
+        navigation={navigation}
         onToggleMainSidebar={sidebar ? () => setMini((v) => !v) : undefined}
         onToggleMobileSidebar={sidebar ? () => setMobileOpen((v) => !v) : undefined}
       />

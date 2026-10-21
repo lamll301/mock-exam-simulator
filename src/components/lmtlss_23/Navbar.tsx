@@ -6,6 +6,8 @@ import Dropdown, { DropdownDivider, DropdownItem } from './Dropdown'
 import Icon from './Icon'
 import { gitUpdates, messages, onlineUsers } from './navbarData'
 import logoLight from '@/assets/lmtlss_23/global_assets/images/logo_light.png'
+import NavSearch from './NavSearch'
+import type { NavNode } from './navTypes'
 
 interface NavbarProps {
   /** Thu gọn / mở rộng sidebar trên desktop. Không truyền thì ẩn nút (trang không có sidebar) */
@@ -16,6 +18,7 @@ interface NavbarProps {
   /** Đường dẫn ảnh logo (logo_light.png của template); không truyền thì hiện chữ */
   logo?: string
   userName?: string
+  navigation?: NavNode[]
 }
 
 const noop = (e: MouseEvent) => e.preventDefault()
@@ -227,6 +230,7 @@ export default function Navbar({
   brand = 'Limitless',
   logo = logoLight,
   userName = 'Victoria',
+  navigation,
 }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -269,7 +273,9 @@ export default function Navbar({
           <GitUpdatesMenu />
         </ul>
 
-        <span className="badge bg-success ml-md-3 mr-md-auto">Online</span>
+        {/* <span className="badge bg-success ml-md-3 mr-md-auto">Online</span> */}
+        <span className={`badge bg-success ml-md-3 mr-md-3 ${navigation ? '' : 'mr-md-auto'}`}>Online</span>
+        {navigation && <NavSearch navigation={navigation} />}
 
         <ul className="navbar-nav">
           <UsersMenu />
