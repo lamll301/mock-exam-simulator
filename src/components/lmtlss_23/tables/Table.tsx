@@ -14,7 +14,12 @@ const wrapperClass: Record<TableWrapper, string> = {
   framed: 'card card-table table-responsive shadow-0 mb-0',
 }
 
+/** Cỡ bảng: xl = 60px, lg = 53px, (mặc định) = 44px, sm = 40px, xs = 36px chiều cao dòng */
+export type TableSize = 'xl' | 'lg' | 'sm' | 'xs'
+
 export interface TableProps {
+  /** Cỡ bảng (thêm class .table-xl / .table-lg / .table-sm / .table-xs); bỏ trống = cỡ mặc định */
+  size?: TableSize
   striped?: boolean
   bordered?: boolean
   hover?: boolean
@@ -25,9 +30,10 @@ export interface TableProps {
 }
 
 /** Ghép class cho <table>: "table table-striped table-bordered ..." */
-function tableClass({ striped, bordered, hover, className }: Pick<TableProps, 'striped' | 'bordered' | 'hover' | 'className'>) {
+function tableClass({ size, striped, bordered, hover, className }: Pick<TableProps, 'size' | 'striped' | 'bordered' | 'hover' | 'className'>) {
   return [
     'table',
+    size && `table-${size}`,
     striped && 'table-striped',
     bordered && 'table-bordered',
     hover && 'table-hover',
@@ -38,10 +44,10 @@ function tableClass({ striped, bordered, hover, className }: Pick<TableProps, 's
 }
 
 /** <table class="table"> kèm lớp bọc. Tự viết <thead>/<tbody> bên trong, hoặc dùng SimpleTable */
-export default function Table({ striped, bordered, hover, wrapper = 'responsive', className, children }: TableProps) {
+export default function Table({ size, striped, bordered, hover, wrapper = 'responsive', className, children }: TableProps) {
   return (
     <div className={wrapperClass[wrapper]}>
-      <table className={tableClass({ striped, bordered, hover, className })}>{children}</table>
+      <table className={tableClass({ size, striped, bordered, hover, className })}>{children}</table>
     </div>
   )
 }

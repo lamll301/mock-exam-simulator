@@ -32,6 +32,9 @@ export const scrollUsers: UserRow[] = [
   { id: 14, firstName: 'Sean', lastName: 'Lewis', username: '@Sean' },
 ]
 
+/** Dữ liệu của table_sizing.html: 7 dòng, dùng chung cho cả 5 bảng */
+export const sizingUsers: UserRow[] = [...basicUsers, ...scrollUsers.slice(4, 7)]
+
 export const userColumns: TableColumn<UserRow>[] = [
   { header: '#', cell: (u) => u.id },
   { header: 'First Name', cell: (u) => u.firstName },

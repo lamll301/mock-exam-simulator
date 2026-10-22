@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import Icon from './Icon'
 
@@ -18,23 +17,22 @@ interface FooterProps {
 const defaultLinks: FooterLink[] = [
   {
     icon: 'lifebuoy',
-    label: 'Support',
+    label: 'Hỗ trợ',
     href: 'https://github.com/lamll301',
   },
   {
     icon: 'file-text2',
-    label: 'Docs',
+    label: 'Tài liệu',
     href: 'https://github.com/lamll301',
   },
   {
     icon: 'heart6',
-    label: 'Donate',
+    label: 'Ủng hộ',
     href: 'https://github.com/sponsors/lamll301',
     className: 'font-weight-semibold',
     textClassName: 'text-pink-400',
   },
 ]
-
 
 export default function Footer({
   text,
@@ -43,7 +41,6 @@ export default function Footer({
   const [open, setOpen] = useState(false)
   const currentYear = new Date().getFullYear()
 
-  
   const footerText = text ?? (
     <>
       &copy; 2026 - {currentYear}.{' '}
@@ -52,7 +49,7 @@ export default function Footer({
         target="_blank"
         rel="noreferrer"
       >
-        Mock Exam Simulator
+        Crafted with ❤️
       </a>{' '}
       by{' '}
       <a
@@ -65,7 +62,6 @@ export default function Footer({
     </>
   )
 
-
   return (
     <div className="navbar navbar-expand-lg navbar-light">
       <div className="text-center d-lg-none w-100">
@@ -75,7 +71,7 @@ export default function Footer({
           onClick={() => setOpen((v) => !v)}
         >
           <Icon name="unfold" className="mr-2" />
-          Footer
+          Chân trang
         </button>
       </div>
 

@@ -1,7 +1,6 @@
 import Content from '../Content'
-import Dropdown, { DropdownDivider, DropdownItem } from '../Dropdown'
-import Icon from '../Icon'
 import PageHeader from '../PageHeader'
+import BreadcrumbActions from '../BreadcrumbActions'
 import CampaignsTable from './CampaignsTable'
 import LatestPosts from './LatestPosts'
 import ProgressCards from './ProgressCards'
@@ -13,50 +12,20 @@ import DailyFinancials from './DailyFinancials'
 import MyMessages from './MyMessages'
 import SupportTickets from './SupportTickets'
 
-// Phần bên phải thanh breadcrumb (Support + Settings), markup theo index.html
-function SettingsMenu() {
-  return (
-    <>
-      <a href="#" className="breadcrumb-elements-item" onClick={(e) => e.preventDefault()}>
-        <Icon name="comment-discussion" className="mr-2" />
-        Support
-      </a>
-      <Dropdown
-        className="breadcrumb-elements-item p-0"
-        align="right"
-        closeOnClick
-        triggerClassName="breadcrumb-elements-item dropdown-toggle"
-        trigger={
-          <>
-            <Icon name="gear" className="mr-2" />
-            Settings
-          </>
-        }
-      >
-        <DropdownItem icon={<Icon name="user-lock" />}>Account security</DropdownItem>
-        <DropdownItem icon={<Icon name="statistics" />}>Analytics</DropdownItem>
-        <DropdownItem icon={<Icon name="accessibility" />}>Accessibility</DropdownItem>
-        <DropdownDivider />
-        <DropdownItem icon={<Icon name="gear" />}>All settings</DropdownItem>
-      </Dropdown>
-    </>
-  )
-}
-
-/** Trang dashboard mẫu của template, dùng để kiểm tra layout đã tích hợp đúng chưa */
+/** Trang bảng điều khiển mẫu của template, dùng để kiểm tra bố cục đã tích hợp đúng chưa */
 export default function DashboardDemo() {
   return (
     <>
       <PageHeader
-        title="Home"
-        subtitle="Dashboard"
+        title="Trang chủ"
+        subtitle="Bảng điều khiển"
         buttons={[
-          { icon: 'bars-alt', label: 'Statistics' },
-          { icon: 'calculator', label: 'Invoices' },
-          { icon: 'calendar5', label: 'Schedule' },
+          { icon: 'bars-alt', label: 'Thống kê' },
+          { icon: 'calculator', label: 'Hóa đơn' },
+          { icon: 'calendar5', label: 'Lịch trình' },
         ]}
-        breadcrumbs={[{ label: 'Home', to: '/', icon: 'home2' }, { label: 'Dashboard' }]}
-        breadcrumbActions={<SettingsMenu />}
+        breadcrumbs={[{ label: 'Trang chủ', to: '/', icon: 'home2' }, { label: 'Bảng điều khiển' }]}
+        breadcrumbActions={<BreadcrumbActions />}
       />
 
       <Content>

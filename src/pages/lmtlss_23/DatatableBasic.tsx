@@ -1,5 +1,5 @@
-import { Content, LimitlessLayout, PageHeader } from '@/components/lmtlss_23'
-import { BreadcrumbActions, DataTable, TableCard, employeeColumns, employees } from '@/components/lmtlss_23/tables'
+import { BreadcrumbActions, Content, LimitlessLayout, PageHeader } from '@/components/lmtlss_23'
+import { DataTable, TableCard, employeeColumns, employees } from '@/components/lmtlss_23/tables'
 
 /** Tương ứng datatable_basic.html của template (Datatables - Basic) */
 export default function DatatableBasic() {

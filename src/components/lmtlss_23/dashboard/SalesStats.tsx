@@ -4,9 +4,9 @@ import MonthlyBars from '../charts/MonthlyBars'
 import SalesLine from '../charts/SalesLine'
 
 const stats = [
-  { value: '5,689', label: 'new orders' },
-  { value: '32,568', label: 'this month' },
-  { value: '$23,464', label: 'expected profit' },
+  { value: '5,689', label: 'Đơn hàng mới' },
+  { value: '32,568', label: 'Tháng này' },
+  { value: '$23,464', label: 'Lợi nhuận dự kiến' },
 ]
 
 const weeks = ['June, 29 - July, 5', 'June, 22 - June 28', 'June, 15 - June, 21', 'June, 8 - June, 14']
@@ -45,7 +45,7 @@ export default function SalesStats() {
   const seed = weeks.indexOf(week) + 1
 
   return (
-    <Card title="Sales statistics" className="flex-fill" bodyClassName="" actions={<DateSelect value={week} onChange={setWeek} />}>
+    <Card title="Thống kê doanh số" className="flex-fill" bodyClassName="" actions={<DateSelect value={week} onChange={setWeek} />}>
       <div className="card-body py-0">
         <div className="row text-center">
           {stats.map((s) => (

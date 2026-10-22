@@ -55,3 +55,38 @@ export const employeeColumns: DataTableColumn<EmployeeRow>[] = [
   // Không có sortValue => không sắp xếp (columnDefs orderable: false, width: 100 của template)
   { header: 'Actions', className: 'text-center', width: 100, cell: () => <RowActions /> },
 ]
+
+/**
+ * Cột của datatable_extension_row_reorder.html: "#" | Full Name | Job Title | DOB | Status | Actions.
+ * Cột "#" là cột số thứ tự của RowReorder: DataTable tự thay phần hiển thị / sắp xếp / tìm kiếm bằng số thứ tự
+ * hiện tại (xem prop `rowReorder`), nên ở đây chỉ cần khai báo tiêu đề.
+ */
+export const rowReorderColumns: DataTableColumn<EmployeeRow>[] = [
+  { header: '#', cell: (r) => r.id },
+  {
+    header: 'Full Name',
+    cell: (r) => (
+      <MaybeLink link={r.lastNameIsLink}>
+        {r.firstName} {r.lastName}
+      </MaybeLink>
+    ),
+    sortValue: (r) => `${r.firstName} ${r.lastName}`,
+  },
+  {
+    header: 'Job Title',
+    cell: (r) => <MaybeLink link={r.jobTitleIsLink}>{r.jobTitle}</MaybeLink>,
+    sortValue: (r) => r.jobTitle,
+  },
+  {
+    header: 'DOB',
+    cell: (r) => formatDob(r.dob),
+    sortValue: (r) => r.dob,
+    searchValue: (r) => formatDob(r.dob),
+  },
+  {
+    header: 'Status',
+    cell: (r) => <span className={`badge ${statusBadgeClass[r.status]}`}>{r.status}</span>,
+    sortValue: (r) => r.status,
+  },
+  { header: 'Actions', className: 'text-center', width: 100, cell: () => <RowActions /> },
+]

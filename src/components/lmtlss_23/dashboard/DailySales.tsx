@@ -4,7 +4,7 @@ import Icon from '../Icon'
 import SalesHeatmap from '../charts/SalesHeatmap'
 import { dailySales, type DailySale } from './data'
 
-// Dropdown bánh răng ở header (markup theo index.html)
+// Menu bánh răng ở phần đầu thẻ (cấu trúc theo index.html)
 function HeaderMenu() {
   return (
     <div className="list-icons ml-3">
@@ -14,11 +14,11 @@ function HeaderMenu() {
         triggerClassName="list-icons-item dropdown-toggle"
         trigger={<Icon name="cog3" />}
       >
-        <DropdownItem icon={<Icon name="sync" />}>Update data</DropdownItem>
-        <DropdownItem icon={<Icon name="list-unordered" />}>Detailed log</DropdownItem>
-        <DropdownItem icon={<Icon name="pie5" />}>Statistics</DropdownItem>
+        <DropdownItem icon={<Icon name="sync" />}>Cập nhật dữ liệu</DropdownItem>
+        <DropdownItem icon={<Icon name="list-unordered" />}>Nhật ký chi tiết</DropdownItem>
+        <DropdownItem icon={<Icon name="pie5" />}>Thống kê</DropdownItem>
         <DropdownDivider />
-        <DropdownItem icon={<Icon name="cross3" />}>Clear list</DropdownItem>
+        <DropdownItem icon={<Icon name="cross3" />}>Xóa danh sách</DropdownItem>
       </Dropdown>
     </div>
   )
@@ -44,7 +44,7 @@ function SaleRow({ s }: { s: DailySale }) {
               className="text-default font-weight-semibold letter-icon-title"
               onClick={(e) => e.preventDefault()}
             >
-              {s.name} application
+              Ứng dụng {s.name}
             </a>
             <div className="text-muted font-size-sm">
               <Icon name={s.icon} className="font-size-sm mr-1" /> {s.type}
@@ -65,7 +65,7 @@ function SaleRow({ s }: { s: DailySale }) {
 export default function DailySales() {
   return (
     <Card
-      title="Daily sales stats"
+      title="Thống kê doanh số hằng ngày"
       bodyClassName=""
       actions={
         <>
@@ -82,9 +82,9 @@ export default function DailySales() {
         <table className="table text-nowrap">
           <thead>
             <tr>
-              <th className="w-100">Application</th>
-              <th>Time</th>
-              <th>Price</th>
+              <th className="w-100">Ứng dụng</th>
+              <th>Thời gian</th>
+              <th>Giá</th>
             </tr>
           </thead>
           <tbody>

@@ -32,7 +32,7 @@ interface TicketGroup {
 const groups: TicketGroup[] = [
   {
     status: 'active',
-    label: 'Active tickets',
+    label: 'Các ticket đang hoạt động',
     count: 24,
     badge: 'blue',
     mark: 'blue',
@@ -46,7 +46,7 @@ const groups: TicketGroup[] = [
   },
   {
     status: 'resolved',
-    label: 'Resolved tickets',
+    label: 'Các ticket đã giải quyết',
     count: 42,
     badge: 'success',
     mark: 'success',
@@ -68,7 +68,7 @@ const groups: TicketGroup[] = [
   },
   {
     status: 'closed',
-    label: 'Closed tickets',
+    label: 'Các ticket đã đóng',
     count: 37,
     badge: 'danger',
     mark: 'danger',
@@ -89,10 +89,10 @@ const donut: DonutSlice[] = [
 
 // daterangepicker của template là jQuery plugin nên thay bằng menu chọn nhanh
 const ranges = [
-  { label: 'Last 7 days', text: 'October 13 - October 19' },
-  { label: 'Last 30 days', text: 'September 20 - October 19' },
-  { label: 'This month', text: 'October 1 - October 19' },
-  { label: 'Last month', text: 'September 1 - September 30' },
+  { label: '7 ngày qua', text: '13 tháng 10 - 19 tháng 10' },
+  { label: '30 ngày qua', text: '20 tháng 9 - 19 tháng 10' },
+  { label: 'Tháng này', text: '1 tháng 10 - 19 tháng 10' },
+  { label: 'Tháng trước', text: '1 tháng 9 - 30 tháng 9' },
 ]
 
 // ---------- thành phần nhỏ ----------
@@ -139,18 +139,18 @@ function TicketMenu({ status }: { status: Status }) {
         triggerClassName="list-icons-item dropdown-toggle caret-0"
         trigger={<Icon name="menu7" />}
       >
-        <DropdownItem icon={<Icon name="undo" />}>Quick reply</DropdownItem>
-        <DropdownItem icon={<Icon name="history" />}>Full history</DropdownItem>
+        <DropdownItem icon={<Icon name="undo" />}>Trả lời nhanh</DropdownItem>
+        <DropdownItem icon={<Icon name="history" />}>Toàn bộ lịch sử</DropdownItem>
         <DropdownDivider />
         {status === 'active' ? (
-          <DropdownItem icon={<Icon name="checkmark3" className="text-success" />}>Resolve issue</DropdownItem>
+          <DropdownItem icon={<Icon name="checkmark3" className="text-success" />}>Giải quyết vấn đề</DropdownItem>
         ) : (
-          <DropdownItem icon={<Icon name="plus3" className="text-blue" />}>Unresolve issue</DropdownItem>
+          <DropdownItem icon={<Icon name="plus3" className="text-blue" />}>Hủy giải quyết</DropdownItem>
         )}
         {status === 'closed' ? (
-          <DropdownItem icon={<Icon name="spinner11" className="text-grey" />}>Reopen issue</DropdownItem>
+          <DropdownItem icon={<Icon name="spinner11" className="text-grey" />}>Mở lại vấn đề</DropdownItem>
         ) : (
-          <DropdownItem icon={<Icon name="cross2" className="text-danger" />}>Close issue</DropdownItem>
+          <DropdownItem icon={<Icon name="cross2" className="text-danger" />}>Đóng vấn đề</DropdownItem>
         )}
       </Dropdown>
     </div>
@@ -162,7 +162,7 @@ function DueCell({ status, hours }: { status: Status; hours?: number }) {
     return (
       <>
         <h6 className="mb-0">{hours}</h6>
-        <div className="font-size-sm text-muted line-height-1">hours</div>
+        <div className="font-size-sm text-muted line-height-1">giờ</div>
       </>
     )
   }
@@ -219,7 +219,7 @@ function TicketRow({ g, t }: { g: TicketGroup; t: Ticket }) {
 
 export default function SupportTickets() {
   return (
-    <Card title="Support tickets" headerClassName="header-elements-sm-inline" bodyClassName="" actions={<DateRange />}>
+    <Card title="Ticket hỗ trợ" headerClassName="header-elements-sm-inline" bodyClassName="" actions={<DateRange />}>
       <div className="card-body d-md-flex align-items-md-center justify-content-md-between flex-md-wrap">
         <div className="d-flex align-items-center mb-3 mb-md-0">
           <DonutChart data={donut} size={42} />
@@ -230,7 +230,7 @@ export default function SupportTickets() {
                 <Icon name="arrow-up12" /> (+2.9%)
               </span>
             </h5>
-            <BadgeMark color="success" className="mr-1" /> <span className="text-muted">Jun 16, 10:00 am</span>
+            <BadgeMark color="success" className="mr-1" /> <span className="text-muted">16 Th6, 10:00 sáng</span>
           </div>
         </div>
 
@@ -240,7 +240,7 @@ export default function SupportTickets() {
           </a>
           <div className="ml-3">
             <h5 className="font-weight-semibold mb-0">1,132</h5>
-            <span className="text-muted">total tickets</span>
+            <span className="text-muted">tổng số ticket</span>
           </div>
         </div>
 
@@ -250,13 +250,13 @@ export default function SupportTickets() {
           </a>
           <div className="ml-3">
             <h5 className="font-weight-semibold mb-0">06:25:00</h5>
-            <span className="text-muted">response time</span>
+            <span className="text-muted">thời gian phản hồi</span>
           </div>
         </div>
 
         <div>
           <a href="#" className="btn bg-teal-400" onClick={(e) => e.preventDefault()}>
-            <Icon name="statistics" className="mr-2" /> Report
+            <Icon name="statistics" className="mr-2" /> Báo cáo
           </a>
         </div>
       </div>
@@ -265,9 +265,9 @@ export default function SupportTickets() {
         <table className="table text-nowrap">
           <thead>
             <tr>
-              <th style={{ width: 50 }}>Due</th>
-              <th style={{ width: 300 }}>User</th>
-              <th>Description</th>
+              <th style={{ width: 50 }}>Thời hạn</th>
+              <th style={{ width: 300 }}>Người dùng</th>
+              <th>Mô tả</th>
               <th className="text-center" style={{ width: 20 }}>
                 <Icon name="arrow-down12" />
               </th>

@@ -1,4 +1,4 @@
-import { Content, Dropdown, DropdownDivider, DropdownItem, Icon, LimitlessLayout, PageHeader } from '@/components/lmtlss_23'
+import { BreadcrumbActions, Content, LimitlessLayout, PageHeader } from '@/components/lmtlss_23'
 import {
   SectionTitle,
   SimpleTable,
@@ -8,75 +8,41 @@ import {
   userColumns,
 } from '@/components/lmtlss_23/tables'
 
-/** Phần bên phải thanh breadcrumb: Support + dropdown Settings (như template) */
-function BreadcrumbActions() {
-  return (
-    <>
-      <a href="#" className="breadcrumb-elements-item" onClick={(e) => e.preventDefault()}>
-        <Icon name="comment-discussion" className="mr-2" />
-        Support
-      </a>
-
-      <Dropdown
-        align="right"
-        closeOnClick
-        className="breadcrumb-elements-item p-0"
-        triggerClassName="breadcrumb-elements-item dropdown-toggle"
-        trigger={
-          <>
-            <Icon name="gear" className="mr-2" />
-            Settings
-          </>
-        }
-      >
-        <DropdownItem icon={<Icon name="user-lock" />}>Account security</DropdownItem>
-        <DropdownItem icon={<Icon name="statistics" />}>Analytics</DropdownItem>
-        <DropdownItem icon={<Icon name="accessibility" />}>Accessibility</DropdownItem>
-        <DropdownDivider />
-        <DropdownItem icon={<Icon name="gear" />}>All settings</DropdownItem>
-      </Dropdown>
-    </>
-  )
-}
-
-/** Tương ứng table_basic.html của template (Tables - Basic) */
+/** Tương ứng với table_basic.html của template (Tables - Basic) */
 export default function TableBasic() {
   return (
     <LimitlessLayout>
       <PageHeader
-        title="Tables"
-        subtitle="Basic"
+        title="Bảng"
+        subtitle="Cơ bản"
         buttons={[
-          { icon: 'bars-alt', label: 'Statistics' },
-          { icon: 'calculator', label: 'Invoices' },
-          { icon: 'calendar5', label: 'Schedule' },
+          { icon: 'bars-alt', label: 'Thống kê' },
+          { icon: 'calculator', label: 'Hóa đơn' },
+          { icon: 'calendar5', label: 'Lịch trình' },
         ]}
         breadcrumbs={[
-          { label: 'Home', to: '/lmtlss_23/', icon: 'home2' },
-          { label: 'Tables', to: '/lmtlss_23/table-basic' },
-          { label: 'Basic' },
+          { label: 'Trang chủ', to: '/lmtlss_23/', icon: 'home2' },
+          { label: 'Bảng', to: '/lmtlss_23/table-basic' },
+          { label: 'Cơ bản' },
         ]}
         breadcrumbActions={<BreadcrumbActions />}
       />
 
       <Content>
         <SectionTitle
-          title="Basic tables"
+          title="Bảng cơ bản"
           subtitle={
             <>
-              Tables with default <code>Bootstrap</code> styling
+              Bảng sử dụng kiểu định dạng mặc định của <code>Bootstrap</code>
             </>
           }
         />
 
         <TableCard
-          title="Basic table"
+          title="Bảng cơ bản"
           description={
             <>
-              Example of a <code>basic</code> table. For basic styling (light padding and only horizontal dividers) add
-              the base class <code>.table</code> to any <code>&lt;table&gt;</code>. It may seem super redundant, but
-              given the widespread use of tables for other plugins like calendars and date pickers, we've opted to
-              isolate our custom table styles.
+              Ví dụ về bảng <code>basic</code>. Để áp dụng kiểu định dạng cơ bản (khoảng đệm nhỏ và chỉ có đường phân cách ngang), hãy thêm lớp cơ sở <code>.table</code> vào bất kỳ phần tử <code>&lt;table&gt;</code> nào. Điều này có thể trông hơi dư thừa, nhưng do bảng được sử dụng rộng rãi trong các plugin khác như lịch và bộ chọn ngày, chúng tôi chọn cách tách riêng các kiểu định dạng bảng tùy chỉnh.
             </>
           }
         >
@@ -84,13 +50,11 @@ export default function TableBasic() {
         </TableCard>
 
         <TableCard
-          title="Striped rows"
+          title="Các hàng sọc xen kẽ"
           description={
             <>
-              Example of a table with <code>striped</code> rows. Use <code>.table-striped</code> added to the base{' '}
-              <code>.table</code> class to add zebra-striping to any table odd row within the <code>&lt;tbody&gt;</code>.
-              This styling doesn't work in IE8 and lower as <code>:nth-child</code> CSS selector isn't supported in these
-              browser versions. Striped table can be combined with other table styles.
+              Ví dụ về bảng có các hàng <code>striped</code>. Thêm lớp <code>.table-striped</code> vào lớp cơ sở{' '}
+              <code>.table</code> để tạo hiệu ứng sọc xen kẽ giữa các hàng lẻ trong phần <code>&lt;tbody&gt;</code>. Kiểu định dạng này không hoạt động trên IE8 trở xuống vì các phiên bản trình duyệt này không hỗ trợ bộ chọn CSS <code>:nth-child</code>. Có thể kết hợp bảng sọc xen kẽ với các kiểu định dạng bảng khác.
             </>
           }
         >
@@ -98,13 +62,11 @@ export default function TableBasic() {
         </TableCard>
 
         <TableCard
-          title="Bordered table"
+          title="Bảng có đường viền"
           description={
             <>
-              Example of a table with fully <code>bordered</code> cells. Add <code>.table-bordered</code> to the base{' '}
-              <code>.table</code> class for borders on all sides of the table and cells. This is a default Bootstrap
-              option for the table, for more advanced border options check <a href="#">Table borders</a> page. Bordered
-              table can be combined with other table styles.
+              Ví dụ về bảng có đường viền <code>bordered</code> bao quanh toàn bộ các ô. Thêm <code>.table-bordered</code> vào lớp cơ sở{' '}
+              <code>.table</code> để tạo đường viền ở tất cả các cạnh của bảng và các ô. Đây là tùy chọn mặc định của Bootstrap dành cho bảng. Để tìm hiểu thêm về các tùy chọn đường viền nâng cao, hãy xem trang <a href="#">Đường viền bảng</a>. Có thể kết hợp bảng có đường viền với các kiểu định dạng bảng khác.
             </>
           }
         >
@@ -112,12 +74,11 @@ export default function TableBasic() {
         </TableCard>
 
         <TableCard
-          title="Bordered striped"
+          title="Bảng có đường viền và hàng sọc"
           description={
             <>
-              Example of a <code>bordered</code> table with <code>stiped</code> rows. Add <code>.table-bordered</code>{' '}
-              and <code>.table-striped</code> classes to the base <code>.table</code> class for borders and row striping.
-              This method works with all table border options.
+              Ví dụ về bảng có đường viền <code>bordered</code> và các hàng <code>stiped</code> xen kẽ. Thêm các lớp <code>.table-bordered</code>{' '}
+              và <code>.table-striped</code> vào lớp cơ sở <code>.table</code> để tạo đường viền và hiệu ứng sọc xen kẽ cho các hàng. Phương pháp này hoạt động với tất cả các tùy chọn đường viền bảng.
             </>
           }
         >
@@ -125,11 +86,10 @@ export default function TableBasic() {
         </TableCard>
 
         <TableCard
-          title="Hover rows"
+          title="Hiệu ứng di chuột trên hàng"
           description={
             <>
-              Example of a table with <code>hover</code> rows state. Add <code>.table-hover</code> to enable a hover
-              state on table rows within a <code>&lt;tbody&gt;</code>.
+              Ví dụ về bảng có trạng thái <code>hover</code> trên các hàng. Thêm <code>.table-hover</code> để bật hiệu ứng khi di chuột qua các hàng trong phần <code>&lt;tbody&gt;</code>.
             </>
           }
         >
@@ -137,12 +97,11 @@ export default function TableBasic() {
         </TableCard>
 
         <TableCard
-          title="Scrollable table"
+          title="Bảng có thể cuộn"
           description={
             <>
-              Example of a <code>scrollable</code> table. To use a fixed height with scrolling, wrap any table in a div
-              with <code>.table-scrollable</code> class. Max height of the table container will be{' '}
-              <code>22.5rem</code> and table will get a vertical scrollbar if its height exceeds this value.
+              Ví dụ về bảng <code>scrollable</code>. Để đặt chiều cao cố định và cho phép cuộn, hãy bọc bảng trong một thẻ div có lớp <code>.table-scrollable</code>. Chiều cao tối đa của vùng chứa bảng là{' '}
+              <code>22.5rem</code>. Thanh cuộn dọc sẽ xuất hiện nếu chiều cao của bảng vượt quá giá trị này.
             </>
           }
         >
@@ -151,21 +110,20 @@ export default function TableBasic() {
 
         <SectionTitle
           className="pt-2"
-          title="Card body tables"
+          title="Bảng trong phần thân thẻ"
           subtitle={
             <>
-              Tables placed inside <code>card body</code>.
+              Các bảng được đặt bên trong phần thân của <code>card body</code>.
             </>
           }
         />
 
         <TableCard
           inBody
-          title="Card body table"
+          title="Bảng trong phần thân thẻ"
           description={
             <>
-              Example of a table placed inside <code>card body</code>. Such tables always have additional whitespace
-              taken from <code>.card-body</code> element padding.
+              Ví dụ về bảng được đặt bên trong phần thân của <code>card body</code>. Các bảng này luôn có thêm khoảng trắng xung quanh nhờ thuộc tính padding của phần tử <code>.card-body</code>.
             </>
           }
         >
@@ -174,11 +132,10 @@ export default function TableBasic() {
 
         <TableCard
           inBody
-          title="Framed table"
+          title="Bảng có khung"
           description={
             <>
-              Example of <code>framed</code> table inside card body. Tables that placed inside card body don't have
-              border around them by default, <code>.table-framed</code> class adds border around the table.
+              Ví dụ về bảng <code>framed</code> bên trong phần thân thẻ. Theo mặc định, các bảng được đặt trong phần thân thẻ không có đường viền bao quanh. Lớp <code>.table-framed</code> sẽ thêm đường viền xung quanh bảng.
             </>
           }
         >
@@ -187,11 +144,10 @@ export default function TableBasic() {
 
         <TableCard
           inBody
-          title="Framed bordered"
+          title="Bảng có khung và đường viền ô"
           description={
             <>
-              Example of <code>bordered framed</code> table inside card body. By default bordered table also doesn't
-              have a border, to use border around the bordered table add <code>.table-framed</code> to the{' '}
+              Ví dụ về bảng <code>bordered framed</code> bên trong phần thân thẻ. Theo mặc định, bảng có đường viền ô cũng không có đường viền bao quanh toàn bộ bảng. Để thêm khung bên ngoài cho bảng có đường viền ô, hãy thêm lớp <code>.table-framed</code> vào{' '}
               <code>&lt;table&gt;</code>.
             </>
           }

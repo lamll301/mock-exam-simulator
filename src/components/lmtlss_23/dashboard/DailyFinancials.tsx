@@ -6,7 +6,7 @@ import LiveSwitch from './LiveSwitch'
 
 interface Activity {
   icon: string
-  /** Class viền + màu chữ của nút tròn, ví dụ "border-pink text-pink" */
+  /** Class viền và màu chữ của nút tròn, ví dụ "border-pink text-pink" */
   color: string
   content: ReactNode
   time: string
@@ -24,43 +24,43 @@ const activities: Activity[] = [
     color: 'border-pink text-pink',
     content: (
       <>
-        Stats for July, 6: <span className="font-weight-semibold">1938</span> orders,{' '}
-        <span className="font-weight-semibold text-danger">$4220</span> revenue
+        Thống kê ngày 6/7: <span className="font-weight-semibold">1938</span> đơn hàng,{' '}
+        doanh thu <span className="font-weight-semibold text-danger">$4220</span>
       </>
     ),
-    time: '2 hours ago',
+    time: '2 giờ trước',
   },
   {
     icon: 'checkmark3',
     color: 'border-success text-success',
     content: (
       <>
-        Invoices {link('#4732')} and {link('#4734')} have been paid
+        Hóa đơn {link('#4732')} và {link('#4734')} đã được thanh toán
       </>
     ),
-    time: 'Dec 18, 18:36',
+    time: '18/12, 18:36',
   },
   {
     icon: 'alignment-unalign',
     color: 'border-primary text-primary',
-    content: 'Affiliate commission for June has been paid',
-    time: '36 minutes ago',
+    content: 'Hoa hồng tiếp thị liên kết tháng 6 đã được thanh toán',
+    time: '36 phút trước',
   },
   {
     icon: 'spinner11',
     color: 'border-warning-400 text-warning-400',
-    content: <>Order {link('#37745')} from July, 1st has been refunded</>,
-    time: '4 minutes ago',
+    content: <>Đơn hàng {link('#37745')} ngày 1/7 đã được hoàn tiền</>,
+    time: '4 phút trước',
   },
   {
     icon: 'redo2',
     color: 'border-teal text-teal',
     content: (
       <>
-        Invoice {link('#4769')} has been sent to {link('Robert Smith')}
+        Hóa đơn {link('#4769')} đã được gửi đến {link('Robert Smith')}
       </>
     ),
-    time: 'Dec 12, 05:46',
+    time: '12/12, 05:46',
   },
 ]
 
@@ -69,7 +69,7 @@ export default function DailyFinancials() {
 
   return (
     <Card
-      title="Daily financials"
+      title="Tài chính hằng ngày"
       actions={
         <>
           <LiveSwitch checked={realtime} onChange={setRealtime} label="Realtime" />

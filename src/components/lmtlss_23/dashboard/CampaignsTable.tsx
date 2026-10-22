@@ -7,21 +7,21 @@ import DonutChart, { type DonutSlice } from '../charts/DonutChart'
 import ProgressMeter from '../charts/ProgressMeter'
 import { campaignGroups, type Campaign } from './data'
 
-// ---------- dữ liệu donut ----------
-// Lát 1 theo số đo của template (xanh lá 13.24% / tím 37.30% / cam 49.46% = 3909 visits)
+// ---------- dữ liệu biểu đồ donut ----------
+// Lát 1 theo số liệu của template (xanh lá 13.24% / tím 37.30% / cam 49.46% = 3909 lượt truy cập)
 const donutA: DonutSlice[] = [
   { name: 'Facebook', value: 1046, visits: 1046, color: '#66BB6A' },
   { name: 'Twitter', value: 2948, visits: 2948, color: '#9575CD' },
-  { name: 'Youtube video', value: 3909, visits: 3909, color: '#FF7043' },
+  { name: 'Video YouTube', value: 3909, visits: 3909, color: '#FF7043' },
 ]
 const donutB: DonutSlice[] = [
-  { name: 'Google ads', value: 3120, visits: 3120, color: '#EF5350' },
-  { name: 'Bing campaign', value: 2410, visits: 2410, color: '#29B6F6' },
-  { name: 'Amazon ads', value: 1870, visits: 1870, color: '#66BB6A' },
-  { name: 'Spotify ads', value: 1260, visits: 1260, color: '#BDBDBD' },
+  { name: 'Quảng cáo Google', value: 3120, visits: 3120, color: '#EF5350' },
+  { name: 'Chiến dịch Bing', value: 2410, visits: 2410, color: '#29B6F6' },
+  { name: 'Quảng cáo Amazon', value: 1870, visits: 1870, color: '#66BB6A' },
+  { name: 'Quảng cáo Spotify', value: 1260, visits: 1260, color: '#BDBDBD' },
 ]
 
-// ---------- helper ----------
+// ---------- hàm hỗ trợ ----------
 
 function formatChange(change: number) {
   const sign = change < 0 ? '- ' : ''
@@ -38,11 +38,11 @@ function RowMenu() {
         triggerClassName="list-icons-item dropdown-toggle caret-0"
         trigger={<Icon name="menu7" />}
       >
-        <DropdownItem icon={<Icon name="file-stats" />}>View statement</DropdownItem>
-        <DropdownItem icon={<Icon name="file-text2" />}>Edit campaign</DropdownItem>
-        <DropdownItem icon={<Icon name="file-locked" />}>Disable campaign</DropdownItem>
+        <DropdownItem icon={<Icon name="file-stats" />}>Xem báo cáo</DropdownItem>
+        <DropdownItem icon={<Icon name="file-text2" />}>Chỉnh sửa chiến dịch</DropdownItem>
+        <DropdownItem icon={<Icon name="file-locked" />}>Tắt chiến dịch</DropdownItem>
         <DropdownDivider />
-        <DropdownItem icon={<Icon name="gear" />}>Settings</DropdownItem>
+        <DropdownItem icon={<Icon name="gear" />}>Cài đặt</DropdownItem>
       </Dropdown>
     </div>
   )
@@ -57,17 +57,17 @@ function HeaderMenu() {
         triggerClassName="list-icons-item dropdown-toggle"
         trigger={<Icon name="menu7" />}
       >
-        <DropdownItem icon={<Icon name="sync" />}>Update data</DropdownItem>
-        <DropdownItem icon={<Icon name="list-unordered" />}>Detailed log</DropdownItem>
-        <DropdownItem icon={<Icon name="pie5" />}>Statistics</DropdownItem>
+        <DropdownItem icon={<Icon name="sync" />}>Cập nhật dữ liệu</DropdownItem>
+        <DropdownItem icon={<Icon name="list-unordered" />}>Nhật ký chi tiết</DropdownItem>
+        <DropdownItem icon={<Icon name="pie5" />}>Thống kê</DropdownItem>
         <DropdownDivider />
-        <DropdownItem icon={<Icon name="cross3" />}>Clear list</DropdownItem>
+        <DropdownItem icon={<Icon name="cross3" />}>Xóa danh sách</DropdownItem>
       </Dropdown>
     </div>
   )
 }
 
-// ---------- dòng dữ liệu ----------
+// ---------- hàng dữ liệu ----------
 
 function CampaignRow({ c }: { c: Campaign }) {
   const down = c.change < 0
@@ -117,13 +117,13 @@ function CampaignRow({ c }: { c: Campaign }) {
 export default function CampaignsTable() {
   return (
     <Card
-      title="Marketing campaigns"
+      title="Chiến dịch tiếp thị"
       headerClassName="header-elements-sm-inline"
       bodyClassName=""
       actions={
         <>
           <Badge color="success" pill>
-            28 active
+            28 đang hoạt động
           </Badge>
           <HeaderMenu />
         </>
@@ -139,7 +139,7 @@ export default function CampaignsTable() {
                 <Icon name="arrow-up12" /> (+16.2%)
               </span>
             </h5>
-            <BadgeMark color="success" className="mr-1" /> <span className="text-muted">May 12, 12:30 am</span>
+            <BadgeMark color="success" className="mr-1" /> <span className="text-muted">12/05, 00:30</span>
           </div>
         </div>
 
@@ -152,13 +152,13 @@ export default function CampaignsTable() {
                 <Icon name="arrow-down12" /> (-4.9%)
               </span>
             </h5>
-            <BadgeMark color="danger" className="mr-1" /> <span className="text-muted">Jun 4, 4:00 am</span>
+            <BadgeMark color="danger" className="mr-1" /> <span className="text-muted">04/06, 04:00</span>
           </div>
         </div>
 
         <div>
           <a href="#" className="btn bg-indigo-300" onClick={(e) => e.preventDefault()}>
-            <Icon name="statistics" className="mr-2" /> View report
+            <Icon name="statistics" className="mr-2" /> Xem báo cáo
           </a>
         </div>
       </div>
@@ -167,11 +167,11 @@ export default function CampaignsTable() {
         <table className="table text-nowrap">
           <thead>
             <tr>
-              <th>Campaign</th>
-              <th>Client</th>
-              <th>Changes</th>
-              <th>Budget</th>
-              <th>Status</th>
+              <th>Chiến dịch</th>
+              <th>Khách hàng</th>
+              <th>Thay đổi</th>
+              <th>Ngân sách</th>
+              <th>Trạng thái</th>
               <th className="text-center" style={{ width: 20 }}>
                 <Icon name="arrow-down12" />
               </th>

@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { Card, Content, Dropdown, DropdownDivider, DropdownItem, Icon, LimitlessLayout, PageHeader } from '@/components/lmtlss_23'
+import { BreadcrumbActions, Card, Content, Icon, LimitlessLayout, PageHeader } from '@/components/lmtlss_23'
 import BasicModals from '@/components/lmtlss_23/modals/BasicModals'
 import ColorModals from '@/components/lmtlss_23/modals/ColorModals'
 import DialogModals from '@/components/lmtlss_23/modals/DialogModals'
@@ -15,7 +15,7 @@ interface Row {
   name: string
   id: ModalId
   description: ReactNode
-  /** Class nút Launch; mặc định btn-light */
+  /** Class nút Mở; mặc định btn-light */
   btn?: string
 }
 
@@ -28,398 +28,366 @@ const code = (text: string) => <code>{text}</code>
 
 const sections: Section[] = [
   {
-    title: 'Basic modals',
+    title: 'Hộp thoại cơ bản',
     rows: [
       {
-        name: 'Default modal dialog',
+        name: 'Hộp thoại mặc định',
         id: 'default',
         description: (
           <>
-            Basic modal dialog with {code('header')}, {code('body')} and {code('footer')} areas. Default examples
-            displays: header - contains a title and a close button; footer - contains buttons and body contains static
-            or dynamic content
+            Hộp thoại cơ bản gồm các khu vực {code('header')}, {code('body')} và {code('footer')}. Ví dụ mặc định
+            bao gồm: phần đầu chứa tiêu đề và nút đóng; phần chân chứa các nút thao tác; phần thân chứa nội dung tĩnh
+            hoặc động.
           </>
         ),
       },
       {
-        name: 'Modal with icons',
+        name: 'Hộp thoại có biểu tượng',
         id: 'iconified',
-        description: 'Modal with icons added to the specified elements: heading title, footer control buttons and text inside modal body',
+        description: 'Hộp thoại có thêm biểu tượng ở các thành phần được chỉ định: tiêu đề, các nút điều khiển ở chân hộp thoại và văn bản trong phần thân.',
       },
       {
-        name: 'Disable backdrop',
+        name: 'Tắt lớp nền',
         id: 'backdrop',
         description: (
           <>
-            Disabled backdrop. Disable backdrop element using {code('backdrop={false}')} or alternatively, specify{' '}
-            {code('static')} for a backdrop which doesn't close the modal on click
+            Tắt lớp nền bằng cách sử dụng {code('backdrop={false}')} hoặc chỉ định{' '}
+            {code('static')} để lớp nền không đóng hộp thoại khi được nhấp vào.
           </>
         ),
       },
       {
-        name: 'Disable keyboard interaction',
+        name: 'Tắt tương tác bàn phím',
         id: 'keyboard',
         description: (
           <>
-            Disabled keyboard interaction. If {code('keyboard')} option is set to {code('true')} (default), the modal
-            can be closed when escape key is pressed
+            Tắt tương tác bàn phím. Nếu tùy chọn {code('keyboard')} được đặt thành {code('true')} (mặc định), hộp thoại
+            có thể được đóng khi nhấn phím Escape.
           </>
         ),
       },
       {
-        name: 'Disable animation',
+        name: 'Tắt hiệu ứng chuyển động',
         id: 'animation',
         description: (
           <>
-            Disabled animation. For modals that simply appear rather than fade in to view, set {code('fade={false}')}
+            Tắt hiệu ứng chuyển động. Để hộp thoại xuất hiện ngay lập tức thay vì mờ dần, hãy đặt {code('fade={false}')}
           </>
         ),
       },
       {
-        name: 'Scrollable modal',
+        name: 'Hộp thoại có thể cuộn',
         id: 'scrollable',
         description: (
           <>
-            Scrollable modal that allows scroll the modal body by adding {code('.modal-dialog-scrollable')} to{' '}
-            {code('.modal-dialog')}
+            Hộp thoại cho phép cuộn phần thân bằng cách thêm {code('.modal-dialog-scrollable')} vào{' '}
+            {code('.modal-dialog')}.
           </>
         ),
       },
       {
-        name: 'Remote source',
+        name: 'Nguồn nội dung từ xa',
         id: 'remote',
         description: (
           <>
-            Replacement of Bootstrap's remote source option (jquery {code('.load()')}): content is loaded
-            asynchronously when the modal opens
+            Thay thế tùy chọn nguồn từ xa của Bootstrap (jquery {code('.load()')}): nội dung được tải
+            bất đồng bộ khi hộp thoại mở.
           </>
         ),
       },
     ],
   },
   {
-    title: 'Modal sizing',
+    title: 'Kích thước hộp thoại',
     rows: [
       {
-        name: 'Mini size modal',
+        name: 'Hộp thoại cỡ rất nhỏ',
         id: 'mini',
         description: (
           <>
-            Modal in mini size. Mini modal width is {code('300px')}. To use, add {code('modal-xs')} class to{' '}
-            {code('.modal-dialog')} container
+            Hộp thoại cỡ rất nhỏ, rộng {code('300px')}. Để sử dụng, thêm class {code('modal-xs')} vào vùng chứa{' '}
+            {code('.modal-dialog')}.
           </>
         ),
       },
       {
-        name: 'Small size modal',
+        name: 'Hộp thoại cỡ nhỏ',
         id: 'small',
         description: (
           <>
-            Modal in small size. Small modal width is {code('400px')}. To use, add {code('modal-sm')} class to{' '}
-            {code('.modal-dialog')} container
+            Hộp thoại cỡ nhỏ, rộng {code('400px')}. Để sử dụng, thêm class {code('modal-sm')} vào vùng chứa{' '}
+            {code('.modal-dialog')}.
           </>
         ),
       },
       {
-        name: 'Default size modal',
+        name: 'Hộp thoại kích thước mặc định',
         id: 'default',
         description: (
           <>
-            Modal in default size. Default modal width is {code('600px')}. Since this is a default size, modal markup
-            doesn't require any additional sizing classes
+            Hộp thoại có kích thước mặc định, rộng {code('600px')}. Vì đây là kích thước mặc định nên phần đánh dấu
+            của hộp thoại không cần thêm class kích thước nào.
           </>
         ),
       },
       {
-        name: 'Large size modal',
+        name: 'Hộp thoại cỡ lớn',
         id: 'large',
         description: (
           <>
-            Modal in large size. Large modal width is {code('900px')}. To use, add {code('modal-lg')} class to{' '}
-            {code('.modal-dialog')} container
+            Hộp thoại cỡ lớn, rộng {code('900px')}. Để sử dụng, thêm class {code('modal-lg')} vào vùng chứa{' '}
+            {code('.modal-dialog')}.
           </>
         ),
       },
       {
-        name: 'Full size modal',
+        name: 'Hộp thoại toàn chiều rộng',
         id: 'full',
         description: (
           <>
-            Modal in full width size. This modal has {code('94%')} width of the window. To use, add {code('modal-full')}{' '}
-            class to {code('.modal-dialog')} container
+            Hộp thoại có chiều rộng bằng {code('94%')} cửa sổ. Để sử dụng, thêm class {code('modal-full')}{' '}
+            vào vùng chứa {code('.modal-dialog')}.
           </>
         ),
       },
     ],
   },
   {
-    title: 'Optional modal colors',
+    title: 'Màu sắc hộp thoại tùy chọn',
     rows: [
       {
-        name: 'Default modal theme',
+        name: 'Giao diện mặc định',
         id: 'default',
         description: (
           <>
-            Default color theme. All areas of this modal dialog have {code('white')} background color. Doesn't require
-            any additional contextual classes
+            Giao diện màu mặc định. Tất cả khu vực của hộp thoại có nền {code('white')}. Không cần thêm
+            class ngữ cảnh nào khác.
           </>
         ),
       },
       ...(['primary', 'danger', 'success', 'warning', 'info'] as const).map((c) => ({
-        name: `${c[0].toUpperCase()}${c.slice(1)} modal header`,
+        name: `Tiêu đề hộp thoại màu ${c === 'primary' ? 'chính' : c === 'danger' ? 'nguy hiểm' : c === 'success' ? 'thành công' : c === 'warning' ? 'cảnh báo' : 'thông tin'}`,
         id: c,
         btn: `bg-${c}`,
         description: (
           <>
-            {c[0].toUpperCase()}
-            {c.slice(1)} modal. To use, add {code(`.bg-${c}`)} class to the {code('.modal-header')} container
+            Hộp thoại màu {c === 'primary' ? 'chính' : c === 'danger' ? 'nguy hiểm' : c === 'success' ? 'thành công' : c === 'warning' ? 'cảnh báo' : 'thông tin'}.
+            Để sử dụng, thêm class {code(`.bg-${c}`)} vào vùng chứa {code('.modal-header')}.
           </>
         ),
       })),
       {
-        name: 'Custom modal header color',
+        name: 'Màu tiêu đề tùy chỉnh',
         id: 'custom',
         btn: 'bg-brown',
         description: (
           <>
-            Modal with {code('custom')} color added to the modal header. To use, add any color class from the color
-            system to the {code('.modal-header')} container
+            Hộp thoại có màu {code('custom')} ở phần tiêu đề. Để sử dụng, thêm bất kỳ class màu nào trong hệ thống
+            màu vào vùng chứa {code('.modal-header')}.
           </>
         ),
       },
       {
-        name: 'Custom modal background color',
+        name: 'Màu nền hộp thoại tùy chỉnh',
         id: 'bg_custom',
         btn: 'bg-teal-300',
         description: (
           <>
-            Modal dialog with {code('solid')} custom background color. To use, add any color class from the color
-            system to the {code('.modal-content')} container. Additionaly, you can also add a custom background color
-            to the modal header
+            Hộp thoại có màu nền tùy chỉnh {code('solid')}. Để sử dụng, thêm bất kỳ class màu nào trong hệ thống
+            màu vào vùng chứa {code('.modal-content')}. Bạn cũng có thể thêm màu nền tùy chỉnh cho phần tiêu đề.
           </>
         ),
       },
     ],
   },
   {
-    title: 'Form components',
+    title: 'Thành phần biểu mẫu',
     rows: [
       {
-        name: 'Vertical form',
+        name: 'Biểu mẫu dọc',
         id: 'form_vertical',
         description: (
           <>
-            Modal with default vertical form layout and responsive grid. Forms must be placed outside of{' '}
-            {code('.modal-body')} container to prevent extra horizontal padding
+            Hộp thoại với bố cục biểu mẫu dọc mặc định và lưới đáp ứng. Biểu mẫu cần được đặt bên ngoài vùng chứa{' '}
+            {code('.modal-body')} để tránh phần đệm ngang bổ sung.
           </>
         ),
       },
       {
-        name: 'Horizontal form',
+        name: 'Biểu mẫu ngang',
         id: 'form_horizontal',
         description:
-          'Modal with horizontal form layout. It does also support responsive grid, but in this case it will look best in wider modals',
+          'Hộp thoại với bố cục biểu mẫu ngang. Bố cục cũng hỗ trợ lưới đáp ứng, nhưng sẽ phù hợp hơn khi sử dụng hộp thoại rộng.',
       },
       {
-        name: 'Inline form',
+        name: 'Biểu mẫu cùng dòng',
         id: 'form_inline',
-        description: <>Modal with with a simple {code('inline')} form layout</>,
+        description: <>Hộp thoại với bố cục biểu mẫu {code('inline')} đơn giản.</>,
       },
     ],
   },
   {
-    title: 'Heading options',
+    title: 'Tùy chọn tiêu đề',
     rows: [
       {
-        name: 'Modal with H1 heading',
+        name: 'Hộp thoại có tiêu đề H1',
         id: 'h1',
         description: (
           <>
-            Modal title in {code('H1')} size. In all heading sizes, vertical position of a {code('close')} button will
-            be automatically adjusted to the middle of the modal header
+            Tiêu đề hộp thoại có kích thước {code('H1')}. Với tất cả kích thước tiêu đề, vị trí theo chiều dọc của
+            nút {code('close')} sẽ tự động căn giữa phần đầu hộp thoại.
           </>
         ),
       },
       ...(['h2', 'h3', 'h4', 'h5', 'h6'] as const).map((h) => ({
-        name: `Modal with ${h.toUpperCase()} heading`,
+        name: `Hộp thoại có tiêu đề ${h.toUpperCase()}`,
         id: h,
-        description: <>Modal title in {code(h.toUpperCase())} size</>,
+        description: <>Tiêu đề hộp thoại có kích thước {code(h.toUpperCase())}.</>,
       })),
       {
-        name: 'Modal with basic title',
+        name: 'Hộp thoại có tiêu đề cơ bản',
         id: 'title_basic',
         description: (
           <>
-            Modal title could be either a standard heading or any other component, but make sure you have included{' '}
-            {code('.modal-title')} class to it
+            Tiêu đề hộp thoại có thể là tiêu đề chuẩn hoặc bất kỳ thành phần nào khác, nhưng cần thêm class{' '}
+            {code('.modal-title')} cho thành phần đó.
           </>
         ),
       },
       {
-        name: 'Modal with subtitle',
+        name: 'Hộp thoại có tiêu đề phụ',
         id: 'subtitle',
         description: (
           <>
-            Modal title {code('subtitle')}. This can be either inline or block. To display a subtitle in one line with
-            the title, remove {code('.d-block')} class from it
+            Tiêu đề phụ của hộp thoại {code('subtitle')} có thể hiển thị cùng dòng hoặc thành một khối riêng.
+            Để hiển thị tiêu đề phụ trên cùng dòng với tiêu đề chính, hãy xóa class {code('.d-block')}.
           </>
         ),
       },
     ],
   },
   {
-    title: 'Modal events',
+    title: 'Sự kiện hộp thoại',
     rows: [
       {
-        name: 'onShow event',
+        name: 'Sự kiện onShow',
         id: 'onshow',
         btn: 'bg-teal',
         description: (
           <>
-            This event fires immediately when the {code('show')} instance method is called. If caused by a click, the
-            clicked element is available as the {code('relatedTarget')} property of the event
+            Sự kiện này được kích hoạt ngay khi phương thức thể hiện {code('show')} được gọi. Nếu được kích hoạt do
+            nhấp chuột, phần tử được nhấp sẽ có trong thuộc tính {code('relatedTarget')} của sự kiện.
           </>
         ),
       },
       {
-        name: 'onShown event',
+        name: 'Sự kiện onShown',
         id: 'onshown',
         btn: 'bg-teal',
         description: (
           <>
-            This event is fired when the modal has been made visible to the user (will wait for CSS transitions to
-            complete). If caused by a click, the clicked element is available as the {code('relatedTarget')} property
-            of the event
+            Sự kiện này được kích hoạt khi hộp thoại đã hiển thị với người dùng (sẽ chờ các hiệu ứng chuyển tiếp CSS
+            hoàn tất). Nếu được kích hoạt do nhấp chuột, phần tử được nhấp sẽ có trong thuộc tính {code('relatedTarget')}
+            của sự kiện.
           </>
         ),
       },
       {
-        name: 'onHide event',
+        name: 'Sự kiện onHide',
         id: 'onhide',
         btn: 'bg-teal',
         description: (
           <>
-            This event is fired immediately when the {code('hide')} instance method has been called
+            Sự kiện này được kích hoạt ngay khi phương thức thể hiện {code('hide')} được gọi.
           </>
         ),
       },
       {
-        name: 'onHidden event',
+        name: 'Sự kiện onHidden',
         id: 'onhidden',
         btn: 'bg-teal',
         description:
-          'This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete)',
+          'Sự kiện này được kích hoạt khi hộp thoại đã ẩn hoàn toàn khỏi người dùng (sẽ chờ các hiệu ứng chuyển tiếp CSS hoàn tất).',
       },
     ],
   },
   {
-    title: 'Programmatic dialog boxes',
+    title: 'Hộp thoại được điều khiển bằng mã',
     rows: [
       {
-        name: 'Alert dialog',
+        name: 'Hộp thoại cảnh báo',
         id: 'alert',
         btn: 'bg-primary',
-        description: <>Example of an {code('alert')} dialog replacement with default Bootstrap modals</>,
+        description: <>Ví dụ thay thế hộp thoại {code('alert')} bằng modal mặc định của Bootstrap.</>,
       },
       {
-        name: 'Confirm dialog',
+        name: 'Hộp thoại xác nhận',
         id: 'confirm',
         btn: 'bg-primary',
-        description: <>Example of a {code('confirmation')} dialog replacement with default Bootstrap modals including callback</>,
+        description: <>Ví dụ thay thế hộp thoại {code('confirmation')} bằng modal mặc định của Bootstrap, có kèm callback.</>,
       },
       {
-        name: 'Prompt dialog',
+        name: 'Hộp thoại nhập dữ liệu',
         id: 'prompt',
         btn: 'bg-primary',
-        description: <>Example of a {code('prompt')} dialog replacement with default Bootstrap modals including callback</>,
+        description: <>Ví dụ thay thế hộp thoại {code('prompt')} bằng modal mặc định của Bootstrap, có kèm callback.</>,
       },
       {
-        name: 'Prompt with default value',
+        name: 'Hộp thoại nhập dữ liệu có giá trị mặc định',
         id: 'prompt_value',
         btn: 'bg-primary',
-        description: <>Example of a {code('prompt')} dialog replacement with default value</>,
+        description: <>Ví dụ thay thế hộp thoại {code('prompt')} bằng modal có giá trị mặc định.</>,
       },
       {
-        name: 'Custom bootbox dialog',
+        name: 'Hộp thoại bootbox tùy chỉnh',
         id: 'bootbox_custom',
         btn: 'bg-primary',
-        description: 'Example of a custom bootbox dialog with multiple buttons and callbacks',
+        description: 'Ví dụ về hộp thoại bootbox tùy chỉnh với nhiều nút và callback.',
       },
       {
-        name: 'Dialog with form',
+        name: 'Hộp thoại có biểu mẫu',
         id: 'bootbox_form',
         btn: 'bg-primary',
-        description: 'Example of a custom bootbox dialog with simple form and callbacks',
+        description: 'Ví dụ về hộp thoại bootbox tùy chỉnh với biểu mẫu đơn giản và callback.',
       },
     ],
   },
 ]
 
-/** Phần bên phải thanh breadcrumb: Support + dropdown Settings (như template) */
-function BreadcrumbActions() {
-  return (
-    <>
-      <a href="#" className="breadcrumb-elements-item" onClick={(e) => e.preventDefault()}>
-        <Icon name="comment-discussion" className="mr-2" />
-        Support
-      </a>
-
-      <Dropdown
-        align="right"
-        closeOnClick
-        className="breadcrumb-elements-item p-0"
-        triggerClassName="breadcrumb-elements-item dropdown-toggle"
-        trigger={
-          <>
-            <Icon name="gear" className="mr-2" />
-            Settings
-          </>
-        }
-      >
-        <DropdownItem icon={<Icon name="user-lock" />}>Account security</DropdownItem>
-        <DropdownItem icon={<Icon name="statistics" />}>Analytics</DropdownItem>
-        <DropdownItem icon={<Icon name="accessibility" />}>Accessibility</DropdownItem>
-        <DropdownDivider />
-        <DropdownItem icon={<Icon name="gear" />}>All settings</DropdownItem>
-      </Dropdown>
-    </>
-  )
-}
-
 // ---------- trang ----------
 
 /** Tương ứng components_modals.html của template (Components - Modal dialogs) */
 export default function ComponentsModals() {
-  // Chỉ một modal demo mở tại một thời điểm; nút Launch và modal khớp nhau qua id
+  // Chỉ một modal demo mở tại một thời điểm; nút Mở và modal khớp nhau qua id
   const [active, setActive] = useState<ModalId | null>(null)
   const close = () => setActive(null)
 
   return (
     <LimitlessLayout>
       <PageHeader
-        title="Components"
-        subtitle="Modal Dialogs"
+        title="Thành phần"
+        subtitle="Hộp thoại"
         buttons={[
-          { icon: 'bars-alt', label: 'Statistics' },
-          { icon: 'calculator', label: 'Invoices' },
-          { icon: 'calendar5', label: 'Schedule' },
+          { icon: 'bars-alt', label: 'Thống kê' },
+          { icon: 'calculator', label: 'Hóa đơn' },
+          { icon: 'calendar5', label: 'Lịch trình' },
         ]}
         breadcrumbs={[
-          { label: 'Home', to: '/lmtlss_23/', icon: 'home2' },
-          { label: 'Components', to: '/lmtlss_23/components-modals' },
-          { label: 'Modal dialogs' },
+          { label: 'Trang chủ', to: '/lmtlss_23/', icon: 'home2' },
+          { label: 'Thành phần', to: '/lmtlss_23/components-modals' },
+          { label: 'Hộp thoại' },
         ]}
         breadcrumbActions={<BreadcrumbActions />}
       />
 
       <Content>
         {/* bodyClassName="" để bảng sát mép card như template (đoạn mô tả tự bọc .card-body) */}
-        <Card title="Modal dialogs" titleAs="h5" tools={['collapse', 'reload', 'remove']} bodyClassName="">
+        <Card title="Hộp thoại" titleAs="h5" tools={['collapse', 'reload', 'remove']} bodyClassName="">
           <div className="card-body">
-            Modal dialog is a small window that communicates information to the user and prompt them for a response.
-            Dialog boxes are classified as {code('"modal"')} or {code('"modeless"')}, depending on whether or not they
-            block interaction with the page that initiated the dialog. Table below contains basic modal dialog
-            examples. Click {code('Launch')} button to run modal examples.
+            Hộp thoại là một cửa sổ nhỏ dùng để truyền đạt thông tin và yêu cầu người dùng phản hồi.
+            Hộp thoại được chia thành loại {code('"modal"')} hoặc {code('"modeless"')}, tùy thuộc vào việc chúng
+            có chặn tương tác với trang đã mở hộp thoại hay không. Bảng bên dưới chứa các ví dụ hộp thoại cơ bản.
+            Nhấp vào nút {code('Mở')} để chạy các ví dụ.
           </div>
 
           <div className="table-responsive">
@@ -445,7 +413,7 @@ export default function ComponentsModals() {
   )
 }
 
-/** Một nhóm: dòng tiêu đề (table-active) + các dòng Launch */
+/** Một nhóm: dòng tiêu đề (table-active) + các dòng Mở */
 function SectionRows({ section, first, onLaunch }: { section: Section; first: boolean; onLaunch: (id: ModalId) => void }) {
   return (
     <>
@@ -458,13 +426,13 @@ function SectionRows({ section, first, onLaunch }: { section: Section; first: bo
         <tr key={`${section.title}-${row.name}`}>
           <td style={{ width: '20%' }}>{row.name}</td>
           <td style={{ width: '20%' }}>
-            <button type="button" className={`btn ${row.btn ?? 'btn-light'}`} 
+            <button type="button" className={`btn ${row.btn ?? 'btn-light'}`}
               onClick={() => {
                 // console.log('launch', row.id)
                 onLaunch(row.id)
               }}
             >
-              Launch <Icon name="play3" className="ml-2" />
+              Mở <Icon name="play3" className="ml-2" />
             </button>
           </td>
           <td>{row.description}</td>
