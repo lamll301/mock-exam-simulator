@@ -1,29 +1,16 @@
-import { Routes, Route } from 'react-router-dom'
-import LmtlssRoutes from './routes/lmtlssRoutes'
-import Layout from '@/components/Layout'
-import HomePage from '@/pages/HomePage'
-import AboutPage from '@/pages/AboutPage'
-import Error404Page from '@/pages/lmtlss_23/Error404Page'
+import { useRoutes, type RouteObject } from 'react-router-dom'
+import { resolveAppHost, type AppHost } from '@/utils/host'
+import { adminRoutes } from './routes/adminRoutes'
+import { mainRoutes } from './routes/mainRoutes'
+import { errorRoutes } from './routes/errorRoutes'
+
+const routesByHost: Record<AppHost, RouteObject[]> = {
+  admin: adminRoutes,
+  main: mainRoutes,
+}
+
+const appRoutes = [...routesByHost[resolveAppHost()], ...errorRoutes]
 
 export default function App() {
-  return (
-    <Routes>
-      {/* Tách phần lmtlss ra một cụm riêng */}
-      <Route path="/lmtlss_23/*" element={<LmtlssRoutes />} />
-
-      {/* Phần app chính */}
-      <Route
-        path="*"
-        element={
-          <Layout>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="*" element={<Error404Page />} />
-            </Routes>
-          </Layout>
-        }
-      />
-    </Routes>
-  )
+  return useRoutes(appRoutes)
 }

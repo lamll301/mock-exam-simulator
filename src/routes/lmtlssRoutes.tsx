@@ -16,6 +16,9 @@ import Error405Page from '@/pages/lmtlss_23/Error405Page'
 import Error500Page from '@/pages/lmtlss_23/Error500Page'
 import Error503Page from '@/pages/lmtlss_23/Error503Page'
 import ErrorOfflinePage from '@/pages/lmtlss_23/ErrorOfflinePage'
+import TableBorders from '@/pages/lmtlss_23/TableBorders'
+import TableStyling from '@/pages/lmtlss_23/TableStyling'
+import TableElements from '@/pages/lmtlss_23/TableElements'
 
 export default function LmtlssRoutes() {
   return (
@@ -34,6 +37,9 @@ export default function LmtlssRoutes() {
         <Route path="datatable-extension-reorder" element={<DatatableExtensionReorder />} />
         <Route path="datatable-extension-row-reorder" element={<DatatableExtensionRowReorder />} />
         <Route path="table-sizing" element={<TableSizing />} />
+        <Route path="table-borders" element={<TableBorders />} />
+        <Route path="table-styling" element={<TableStyling />} />
+        <Route path="table-elements" element={<TableElements />} />
         <Route path="components-modals" element={<ComponentsModals />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="error/403" element={<Error403Page />} />

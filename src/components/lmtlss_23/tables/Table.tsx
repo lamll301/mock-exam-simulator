@@ -23,6 +23,10 @@ export interface TableProps {
   striped?: boolean
   bordered?: boolean
   hover?: boolean
+  /** Chỉ có đường viền dọc giữa các cột (.table-columned) */
+  columned?: boolean
+  /** Ẩn mọi đường viền, trừ đường giữa thead / tbody / tfoot (.table-borderless) */
+  borderless?: boolean
   wrapper?: TableWrapper
   /** Class thêm cho <table> */
   className?: string
@@ -30,13 +34,23 @@ export interface TableProps {
 }
 
 /** Ghép class cho <table>: "table table-striped table-bordered ..." */
-function tableClass({ size, striped, bordered, hover, className }: Pick<TableProps, 'size' | 'striped' | 'bordered' | 'hover' | 'className'>) {
+function tableClass({
+  size,
+  striped,
+  bordered,
+  hover,
+  columned,
+  borderless,
+  className,
+}: Pick<TableProps, 'size' | 'striped' | 'bordered' | 'hover' | 'columned' | 'borderless' | 'className'>) {
   return [
     'table',
     size && `table-${size}`,
     striped && 'table-striped',
     bordered && 'table-bordered',
     hover && 'table-hover',
+    columned && 'table-columned',
+    borderless && 'table-borderless',
     className,
   ]
     .filter(Boolean)
@@ -44,10 +58,20 @@ function tableClass({ size, striped, bordered, hover, className }: Pick<TablePro
 }
 
 /** <table class="table"> kèm lớp bọc. Tự viết <thead>/<tbody> bên trong, hoặc dùng SimpleTable */
-export default function Table({ size, striped, bordered, hover, wrapper = 'responsive', className, children }: TableProps) {
+export default function Table({
+  size,
+  striped,
+  bordered,
+  hover,
+  columned,
+  borderless,
+  wrapper = 'responsive',
+  className,
+  children,
+}: TableProps) {
   return (
     <div className={wrapperClass[wrapper]}>
-      <table className={tableClass({ size, striped, bordered, hover, className })}>{children}</table>
+      <table className={tableClass({ size, striped, bordered, hover, columned, borderless, className })}>{children}</table>
     </div>
   )
 }
