@@ -1,9 +1,11 @@
+
 import type { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 
 interface ErrorPageProps {
   code: string
   message: string
+  offline?: boolean
 }
 
 // TODO: nối với chức năng tìm kiếm thật của app
@@ -11,8 +13,18 @@ function handleSearch(e: FormEvent<HTMLFormElement>) {
   e.preventDefault()
 }
 
-// Markup copy từ template (error_*.html), bỏ navbar/footer. Style do CSS gốc Limitless lo.
-export default function ErrorPage({ code, message }: ErrorPageProps) {
+// Markup dựa trên template Limitless error pages.
+export default function ErrorPage({
+  code,
+  message,
+  offline = false,
+}: ErrorPageProps) {
+  function handleAdvancedSearch(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (offline) {
+      e.preventDefault()
+    }
+  }
+
   return (
     <div className="page-content">
       <div className="content-wrapper">
@@ -23,33 +35,46 @@ export default function ErrorPage({ code, message }: ErrorPageProps) {
               <h5>{message}</h5>
             </div>
 
-            <div className="row">
-              <div className="col-xl-4 offset-xl-4 col-md-8 offset-md-2">
-                <form onSubmit={handleSearch}>
-                  <div className="input-group mb-3">
-                    <input type="text" className="form-control form-control-lg" placeholder="Search" />
-                    <div className="input-group-append">
-                      <button className="btn bg-slate-600 btn-icon btn-lg" type="submit">
-                        <i className="icon-search4" />
-                      </button>
+            {!offline && (
+              <div className="row">
+                <div className="col-xl-4 offset-xl-4 col-md-8 offset-md-2">
+                  <form onSubmit={handleSearch}>
+                    <div className="input-group mb-3">
+                      <input
+                        type="text"
+                        className="form-control form-control-lg"
+                        placeholder="Search"
+                      />
+                      <div className="input-group-append">
+                        <button
+                          className="btn bg-slate-600 btn-icon btn-lg"
+                          type="submit"
+                        >
+                          <i className="icon-search4" />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
+                  </form>
 
-                <div className="row">
-                  <div className="col-sm-6">
-                    <Link to="/" className="btn btn-primary btn-block">
-                      <i className="icon-home4 mr-2" /> Dashboard
-                    </Link>
-                  </div>
-                  <div className="col-sm-6">
-                    <a href="#" className="btn btn-light btn-block mt-3 mt-sm-0">
-                      <i className="icon-menu7 mr-2" /> Advanced search
-                    </a>
+                  <div className="row">
+                    <div className="col-sm-6">
+                      <Link to="/" className="btn btn-primary btn-block">
+                        <i className="icon-home4 mr-2" /> Dashboard
+                      </Link>
+                    </div>
+                    <div className="col-sm-6">
+                      <a
+                        href="#"
+                        onClick={handleAdvancedSearch}
+                        className="btn btn-light btn-block mt-3 mt-sm-0"
+                      >
+                        <i className="icon-menu7 mr-2" /> Advanced search
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
