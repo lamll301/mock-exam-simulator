@@ -1,8 +1,7 @@
 export type AppHost = 'admin' | 'main'
 
-const ADMIN_SUBDOMAIN = 'admin'
-
-export function resolveAppHost(hostname: string = window.location.hostname): AppHost {
-  const subdomain = hostname.split('.')[0]
-  return subdomain === ADMIN_SUBDOMAIN ? 'admin' : 'main'
+function readAppHost(): AppHost {
+  return import.meta.env.VITE_APP_HOST === 'admin' ? 'admin' : 'main'
 }
+
+export const APP_HOST: AppHost = readAppHost()
